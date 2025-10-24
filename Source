@@ -4396,6 +4396,9 @@ function Library:Window(p)
 			R = true
 		end)
 
+		local isZ = false
+		local originalSize, originalPosition
+		
 		if not HAA then
 			local AP, PAZ = Shadow_1.AbsolutePosition, Shadow_1.Parent.AbsoluteSize
 			local NP = UDim2.new((AP.X / PAZ.X),
@@ -4417,7 +4420,7 @@ function Library:Window(p)
 		end)
 
 		U.InputChanged:Connect(function(i)
-			if R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+			if not isZ and R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
 				local nW = math.max(450, i.Position.X - Shadow_1.AbsolutePosition.X)
 				local nH = math.max(220, i.Position.Y - Shadow_1.AbsolutePosition.Y)
 				local nZ = UDim2.new(0, nW, 0, nH)
@@ -4425,6 +4428,10 @@ function Library:Window(p)
 				tw({v = SizeFrame, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {BackgroundTransparency = 0.6}}):Play()
 				tw({v = ImageLabel_1, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {ImageTransparency = 0}}):Play()
 				ImageLabel_1.Image = 'rbxassetid://13857987062'	
+			elseif isZ and R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+				tw({v = SizeFrame, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {BackgroundTransparency = 0.6}}):Play()
+				tw({v = ImageLabel_1, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {ImageTransparency = 0}}):Play()
+				ImageLabel_1.Image = 'rbxassetid://14906268026'
 			end
 		end)
 
