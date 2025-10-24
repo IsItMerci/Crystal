@@ -4396,30 +4396,6 @@ function Library:Window(p)
 			R = true
 		end)
 
-		local isZ = false
-		local originalSize, originalPosition
-		
-		--[[ MINISIZE BUTTON AND FUNCTIONALITY REMOVED
-		Minisize_1.MouseButton1Click:Connect(function()
-			if not isZ then
-				originalSize = Shadow_1.Size
-				originalPosition = Shadow_1.Position
-				tw({v = Shadow_1, t = 0.15, s = Enum.EasingStyle.Exponential, d = "Out", g = {
-					Size = UDim2.new(1, 0, 1, 0),
-					Position = UDim2.new(0, 0, 0, 0)
-				}}):Play()
-				Minisize_1.Image = "rbxassetid://13857981896"
-			else
-				Minisize_1.Image = "rbxassetid://13857987062"
-				tw({v = Shadow_1, t = 0.15, s = Enum.EasingStyle.Exponential, d = "Out", g = {
-					Size = originalSize,
-					Position = originalPosition
-				}}):Play()
-			end
-			isZ = not isZ
-		end)
-        ]]
-
 		if not HAA then
 			local AP, PAZ = Shadow_1.AbsolutePosition, Shadow_1.Parent.AbsoluteSize
 			local NP = UDim2.new((AP.X / PAZ.X),
@@ -4441,7 +4417,7 @@ function Library:Window(p)
 		end)
 
 		U.InputChanged:Connect(function(i)
-			if not isZ and R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+			if R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
 				local nW = math.max(450, i.Position.X - Shadow_1.AbsolutePosition.X)
 				local nH = math.max(220, i.Position.Y - Shadow_1.AbsolutePosition.Y)
 				local nZ = UDim2.new(0, nW, 0, nH)
@@ -4449,10 +4425,6 @@ function Library:Window(p)
 				tw({v = SizeFrame, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {BackgroundTransparency = 0.6}}):Play()
 				tw({v = ImageLabel_1, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {ImageTransparency = 0}}):Play()
 				ImageLabel_1.Image = 'rbxassetid://13857987062'	
-			elseif isZ and R and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
-				tw({v = SizeFrame, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {BackgroundTransparency = 0.6}}):Play()
-				tw({v = ImageLabel_1, t = 0.15, s = Enum.EasingStyle.Linear, d = "Out", g = {ImageTransparency = 0}}):Play()
-				ImageLabel_1.Image = 'rbxassetid://14906268026'
 			end
 		end)
 
@@ -4595,32 +4567,6 @@ function Library:Window(p)
 			})
 		end
 		local ThemeDrop = addDropdownSelect(DropdownValue_1, DropdownValue_1, false, CallTheme, Theme, themes.index)
-
-		--[[ CLOSE BUTTON AND FUNCTIONALITY REMOVED
-		Close_1.MouseButton1Click:Connect(function()
-			Tabs:Dialog({
-				Title = "Do you want to <font color='#FF0000'>close</font> the ui?",
-				Button1 = {
-					Title = 'Confirm',
-					Color = Color3.fromRGB(0, 188, 0),
-					Callback = function()
-						ScreenGui:Destroy()
-					end,
-				},
-				Button2 = {
-					Title = 'Cancel',
-					Color = Color3.fromRGB(226, 39, 6),
-				}
-			})
-		end)
-		]]
-
-		--[[ CLOSEUIBUTTON BLOCK REMOVED
-		do
-			local CloseUI = p.CloseUIButton
-			...
-		end
-		]]
 	end
 
 	return Tabs
